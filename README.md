@@ -1,4 +1,4 @@
-# Knapsack-and-tsp
+# Knapsack and tsp
 
 The Knapsack problem is a classic and important part of learning optimization.  It is simply a maximization problem.  
 The maximum amount of items are chosen as to take the most exensive in accordance with the weight.  For the purpose
