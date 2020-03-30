@@ -64,7 +64,7 @@ solution,z_value=b_and_b_tsp(Distances)
 
 for i in 1:length(solution)
     if solution[i]!=1
-      push!(pin,(p[solution[i]-1],c[solution[i]-1],i))
+      push!(pin,(p[solution[i]-1],c[solution[i]-1],i-1))
     else
         push!(pin,(0,0))
 end
@@ -75,23 +75,24 @@ weights=weights[w_push]
 end
 ```
 This is done each time a new grouping 
-of items is chosen.  The end trips were then arranged to show travel to and from each grouping:
+of items is chosen.  The end trips were then arranged to show travel to and from each
+grouping , the weight and the order traveled :
 ```
  (0, 0)           
- ((9, 33), 36, 2) 
- ((20, 22), 48, 3)
- (0, 0)           
- (0, 0)           
- ((3, 21), 4, 2)  
- ((9, 25), 5, 3)  
- ((9, 33), 36, 4) 
- ((20, 22), 48, 5)
- (0, 0)           
- (0, 0)           
+ ((9, 33), 36, 1) 
  ((20, 22), 48, 2)
- ((16, 34), 4, 3) 
- ((9, 33), 36, 4) 
- ((1, 32), 5, 5)  
+ (0, 0)           
+ (0, 0)           
+ ((3, 21), 4, 1)  
+ ((9, 25), 5, 2)
+ ((9, 33), 36, 3)
+ ((20, 22), 48, 4)
+ (0, 0)           
+ (0, 0)           
+ ((20, 22), 48, 1)
+ ((16, 34), 4, 2)
+ ((9, 33), 36, 3)
+ ((1, 32), 5, 4)
  (0, 0)
  ```
  The knapsack problem was solved using the branch and bound method.  
