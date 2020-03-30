@@ -4,7 +4,7 @@ The Knapsack problem is a classic and important part of learning optimization.  
 The maximum amount of items are chosen as to take the most exensive in accordance with the weight.  For the purpose
 of this project the variables are expensive in terms of their weight.  
 ```
-(50, 9, 33) 
+ (50, 9, 33) 
  (48, 20, 22)
  (43, 16, 34)
  (36, 1, 32) 
@@ -71,12 +71,13 @@ end
 end
 
 weights=weights[w_push]
+
 end
 ```
 This is done each time a new grouping 
 of items is chosen.  The end trips were then arranged to show travel to and from each grouping:
 ```
-(0, 0)           
+ (0, 0)           
  ((9, 33), 36, 2) 
  ((20, 22), 48, 3)
  (0, 0)           
