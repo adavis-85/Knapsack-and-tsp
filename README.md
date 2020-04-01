@@ -54,8 +54,6 @@ for i in 1:length(weights)
     end
 end
 
-w=weights[w_push]
-
 p=points_for_distance[needed]
 
 Distances=distance_matrix(p)
