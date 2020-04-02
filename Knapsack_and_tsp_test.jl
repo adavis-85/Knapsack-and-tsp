@@ -12,36 +12,23 @@ v=sort(collect(v),by=x->x[1],rev=true)
 
 v
 
-##The first column is the weights sorted in descending value.  The next two together are the points where the 
-##items need to go.  These will be saved in a different 
-(50, 9, 33) 
- (48, 20, 22)
- (43, 16, 34)
- (36, 1, 32) 
- (31, 3, 21) 
- (26, 9, 25) 
- (14, 9, 28) 
- (5, 14, 36) 
- (5, 11, 38) 
- (4, 1, 36)
-
-weights=collect(x[1] for x in v)
-A=collect(x[2] for x in v)
-B=collect(x[3] for x in v)
-points_for_distance=Tuple{Int,Int}[]
-
-for i in 1:length(A)
-    push!(points_for_distance,(A[i],B[i]))
-end
-
-
-cap=100
-pin=[]
+ (45, 16, 37)
+ (42, 1, 40) 
+ (36, 20, 21)
+ (35, 18, 22)
+ (31, 6, 38) 
+ (24, 19, 28)
+ (19, 11, 23)
+ (19, 16, 29)
+ (19, 15, 34)
+ (7, 15, 38)
 
 
 ##A loop is put into place to run until all of the weights are chosen and each resulting distance matrix is solved
 ##to find the shortest path.  
 while length(weights)>0
+                
+            
     
 cap=100
     
@@ -54,61 +41,65 @@ d,mark=initial_lp(weights,cap,incumbents)
 if d!=0
 e,f,incumbents=split_func(d,x_test,mark)
 
-while f!=0
+while  f!=0
 e,f,incumbents=split_func(f,e,incumbents)
 end
 else
     incumbents=mark
 end
 
-w=incumbents[1:length(weights)]
-w_push=[]
-needed=[]
-for i in 1:length(weights)
-    if w[i]!=1
-        push!(w_push,i)
-    else
-        push!(needed,i)
-    end
-end
+##here is where its not working.
+            
+test_var=[]
+need=[]               
+for i::Int in 1:length(weights)
+if incumbents[i]==1
+        push!(test_var,i)
+                    else
+                        push!(need,i)
+                end
+                    end       
+         
+d=weights[test_var]
+                
+p=points_for_distance[test_var]
 
-w=weights[w_push]
-
-p=points_for_distance[needed]
-
+points_for_distance=points_for_distance[need]
+                
 Distances=distance_matrix(p)
 
 solution,z_value=b_and_b_tsp(Distances)
-
+            
 for i in 1:length(solution)
     if solution[i]!=1
-      push!(pin,(p[solution[i]-1],c[solution[i]-1],i))
+    push!(pin,((p[solution[i]-1],d[solution[i]-1]),i-1))
     else
-        push!(pin,(0,0))
+    push!(pin,(0,0))
 end
 end
 
-weights=weights[w_push]
+    weights=weights[need]
+                
 end
-
 ##The resulting "trips" chosen to best optimize the amount carried and also the minimum distance traveled.
 ##each index of (0,0) is the starting point and end point of coming back to the original starting point 
 ##which is always the same.  
+
 pin
 
- (0, 0)           
- ((9, 33), 36, 2) 
- ((20, 22), 48, 3)
- (0, 0)           
- (0, 0)           
- ((3, 21), 4, 2)  
- ((9, 25), 5, 3)  
- ((9, 33), 36, 4) 
- ((20, 22), 48, 5)
- (0, 0)           
- (0, 0)           
- ((20, 22), 48, 2)
- ((16, 34), 4, 3) 
- ((9, 33), 36, 4) 
- ((1, 32), 5, 5)  
+ (0, 0)             
+ (((11, 23), 19), 1)
+ (((18, 22), 35), 2)
+ (((20, 21), 36), 3)
+ (((15, 38), 7), 4) 
+ (0, 0)             
+ (0, 0)             
+ (((6, 38), 31), 1) 
+ (((16, 37), 45), 2)
+ (((19, 28), 24), 3)
+ (0, 0)             
+ (0, 0)             
+ (((1, 40), 42), 1) 
+ (((15, 34), 19), 2)
+ (((16, 29), 19), 3)
  (0, 0)
