@@ -1,4 +1,4 @@
-# Knapsack-and-tsp-for-logistics
+# Knapsack and tsp for logistics
 
 The Knapsack problem is a classic and important part of learning optimization. It is simply a maximization problem.
 The maximum amount of items are chosen as to take the most expensive in accordance with the weight. For the purpose of this project the variables are chosen in terms of their weight.
