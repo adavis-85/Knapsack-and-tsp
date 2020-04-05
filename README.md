@@ -36,11 +36,10 @@ end
 else
     incumbents=mark
 end
-
-##here is where its not working.
             
 test_var=[]
-need=[]               
+need=[]             
+  
 for i::Int in 1:length(weights)
   if incumbents[i]==1
      push!(test_var,i)
